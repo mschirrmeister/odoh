@@ -50,4 +50,4 @@ There are multiple examples. One is running everything locally and one where you
 
 Here is a diagram about the setup for better visualization.
 
-![ODoH setup](odoh_cloud_setup.png)
+![ODoH setup](files/odoh_cloud_setup.png)
