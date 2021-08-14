@@ -47,7 +47,7 @@ Run container and register in Traefik
 
 ### Traefik
 
-Run Traefik on a public cloud server with existing static certificate
+Run Traefik on a public cloud server with certificates managed by Traefik
 
     docker run -it -d \
       --name traefik \
@@ -93,7 +93,7 @@ Run container and register in traefik
 
 ### Traefik
 
-Run Traefik on a public cloud server with existing static certificate
+Run Traefik on a public cloud server with certificates managed by Traefik
 
     docker run -it -d \
       --name traefik \
