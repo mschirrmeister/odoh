@@ -1,0 +1,56 @@
+## STATIC CONFIGURATION
+log:
+  # level: INFO
+  level: DEBUG
+
+api:
+  insecure: true
+  dashboard: true
+
+entryPoints:
+  web:
+    address: ":80"
+    # Redirect to https
+    # http:
+    #   redirections:
+    #     entryPoint:
+    #       to: websecure
+    #       scheme: https
+    #       permanent: true
+  websecure:
+    address: ":443"
+
+providers:
+  docker: {}
+  file:
+    filename: "traefik.yml"
+    directory: /etc/traefik/dynamic
+    watch: true
+
+certificatesResolvers:
+  le:
+    acme:
+      # production (default)
+      # caServer: https://acme-v02.api.letsencrypt.org/directory
+      # staging - enable this for development and debugging in order to not hit your rate limit
+      caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      # available chains
+      #  DST Root X3
+      #  ISRG Root X1
+      # preferredChain: ISRG Root X1
+      storage: /letsencrypt/acme.json
+      email: certs@marco.cx
+      # httpChallenge:
+      #   entryPoint: web
+      # tlsChallenge: true
+      dnschallenge:
+        provider: cloudns
+        resolvers:
+          - "1.1.1.1:53"
+          - "1.0.0.1:53"
+
+      # Keytype comparison
+      # 256-bit 3072-bit
+      # 384-bit 7680-bit
+      # 521-bit 15360-bit
+      KeyType: EC256

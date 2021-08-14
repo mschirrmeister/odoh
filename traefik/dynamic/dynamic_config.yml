@@ -1,0 +1,79 @@
+## DYNAMIC CONFIGURATION
+
+tls:
+  options:
+    default:
+      minVersion: VersionTLS12
+      sniStrict: true
+      # prefering cipher option is automatically enabled, if you set "minVersion"
+      preferServerCipherSuites: true
+      cipherSuites:
+        - "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256"
+        - "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"
+        - "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"
+        - "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"
+        - "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+        - "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+      curvePreferences:
+        - "secp256r1"
+        - "secp384r1"
+        - "secp521r1"
+        - "x25519"
+    mintls12:
+      minVersion: VersionTLS12
+      sniStrict: true
+      # prefering cipher option is automatically enabled, if you set "minVersion"
+      preferServerCipherSuites: true
+      cipherSuites:
+        - "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256"
+        - "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"
+        - "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"
+        - "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+      curvePreferences:
+        - "secp384r1"
+        - "secp521r1"
+        - "x25519"
+    mintls13:
+      minVersion: VersionTLS13
+      sniStrict: true
+      # prefering cipher option is automatically enabled, if you set "minVersion"
+      # Besides, even if no "minVersion" and you set it to "false" and you connect with TLS 1.3, the cipher is picked by the server
+      # In other words, the option has no effect with TLS1.3
+      preferServerCipherSuites: true
+      # Not need to list ciphers for TLS1.3, since they are unfortunately not configurable
+      # https://doc.traefik.io/traefik/v2.4/https/tls/#cipher-suites
+      #  With TLS 1.3, the cipher suites are not configurable (all supported cipher suites are safe in this case). https://golang.org/doc/go1.12#tls_1_3
+      cipherSuites:
+        - "TLS_CHACHA20_POLY1305_SHA256"
+        - "TLS_AES_256_GCM_SHA384"
+        - "TLS_AES_128_GCM_SHA256"
+
+# This are the static certificates in case this is needed
+# Also to load or define a default certificate
+# Since Traefik cannot have both RSA and ECDSA for the same host, we only use ECDSA, since this is the future
+  certificates:
+    # RSA
+    # - certFile: /certs1/fullchain.cer
+    #   keyFile: /certs1/doh.marco.cx.key
+    #   stores:
+    #     - default
+    # ECDSA
+    - certFile: /certs2/fullchain.cer
+      keyFile: /certs2/doh.marco.cx.key
+      stores:
+        - default
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /certs2/fullchain.cer
+        keyFile: /certs2/doh.marco.cx.key
+
+http:
+  # This is used when Traefik uses a TLS connection to the backend
+  # -l "traefik.http.services.odohproxy.loadbalancer.serversTransport=odohproxy@file"
+  serversTransports:
+    odohproxy:
+      serverName: odoh.marco.cx
+    odohtarget:
+      serverName: doh.marco.cx
+
