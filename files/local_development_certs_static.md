@@ -117,7 +117,7 @@ Run container with build-in **https** support (useful for testing)
       -e CERT=/certs/fullchain.cer \
       -e KEY=/certs/doh.marco.cx.key \
       -e PORT=4567 \
-      mschirrmeister/odoh-server-go:0.1.4-7986d2f
+      mschirrmeister/odoh-server-go:0.1.4-5a9bf1f
 
 Run container locally and register in traefik with **https** to the backend (if you are paranoid)
 
@@ -136,7 +136,7 @@ Run container locally and register in traefik with **https** to the backend (if 
       -l "traefik.http.routers.odohproxy.tls=true" \
       -l "traefik.http.services.odohproxy.loadbalancer.server.scheme=https" \
       -l "traefik.http.services.odohproxy.loadbalancer.serversTransport=odohproxy@file" \
-      mschirrmeister/odoh-server-go:0.1.4-7986d2f
+      mschirrmeister/odoh-server-go:0.1.4-5a9bf1f
 
 Run container locally and register in traefik with **http** to the backend
 
@@ -151,7 +151,7 @@ Run container locally and register in traefik with **http** to the backend
       --add-host doh.marco.cx:$IP \
       -l 'traefik.http.routers.odohproxy.rule=Host(`odoh.marco.cx`) || Host(`odoh-proxy.marco.cx`) || Host(`odoh-relay.marco.cx`) || Host(`odoh-p-fra.marco.cx`) || Host(`odoh-proxy-fra.marco.cx`) || Host(`odoh-r-fra.marco.cx`) || Host(`odoh-relay-fra.marco.cx`)" \
       -l 'traefik.http.routers.odohproxy.tls=true' \
-      mschirrmeister/odoh-server-go:0.1.4-7986d2f
+      mschirrmeister/odoh-server-go:0.1.4-5a9bf1f
 
 ### odoh-server-go testing
 

@@ -125,7 +125,7 @@ Run container with build-in **https** support
       -e CERT=/certs/fullchain.cer \
       -e KEY=/certs/doh.marco.cx.key \
       -e PORT=4567 \
-      mschirrmeister/odoh-server-go:0.1.4-7986d2f
+      mschirrmeister/odoh-server-go:0.1.4-5a9bf1f
 
 Run container locally and register in traefik with **https** to the backend
 
@@ -148,7 +148,7 @@ Run container locally and register in traefik with **https** to the backend
       -l "traefik.http.routers.odohtarget.tls.domains[0].sans=odoh-relay.marco.cx" \
       -l "traefik.http.services.odohproxy.loadbalancer.server.scheme=https" \
       -l "traefik.http.services.odohproxy.loadbalancer.serversTransport=odohproxy@file" \
-      mschirrmeister/odoh-server-go:0.1.4-7986d2f
+      mschirrmeister/odoh-server-go:0.1.4-5a9bf1f
 
 Run container locally and register in traefik with **http** to the backend
 
@@ -166,7 +166,7 @@ Run container locally and register in traefik with **http** to the backend
       -l "traefik.http.routers.odohtarget.tls.options=mintls12@file" \
       -l "traefik.http.routers.odohtarget.tls.domains[0].main=odoh.marco.cx" \
       -l "traefik.http.routers.odohtarget.tls.domains[0].sans=odoh-relay.marco.cx" \
-      mschirrmeister/odoh-server-go:0.1.4-7986d2f
+      mschirrmeister/odoh-server-go:0.1.4-5a9bf1f
 
 ### odoh-server-go testing
 

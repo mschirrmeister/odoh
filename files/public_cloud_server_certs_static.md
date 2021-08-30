@@ -55,7 +55,7 @@ Run Traefik on a public cloud server with existing static certificate
       -v /home/marco/traefik/dynamic/:/etc/traefik/dynamic/ \
       -v /home/marco/doh.marco.cx/:/certs1/ \
       -v /home/marco/doh.marco.cx_ecc/:/certs2/ \
-      traefik:v2.4.12
+      traefik:v2.4.13
 
 ## Vultr
 
@@ -79,7 +79,7 @@ Run container and register in traefik
       -e PORT=4567 \
       -l 'traefik.http.routers.odohproxy.rule=Host(`odoh.marco.cx`)' \
       -l 'traefik.http.routers.odohproxy.tls=true' \
-      mschirrmeister/odoh-server-go:0.1.4-7986d2f
+      mschirrmeister/odoh-server-go:0.1.4-5a9bf1f
 
 ### Traefik
 
@@ -95,4 +95,4 @@ Run Traefik on a public cloud server with existing static certificate
       -v /home/marco/traefik/dynamic/:/etc/traefik/dynamic/ \
       -v /home/marco/doh.marco.cx/:/certs1/ \
       -v /home/marco/doh.marco.cx_ecc/:/certs2/ \
-      traefik:v2.4.12
+      traefik:v2.4.13

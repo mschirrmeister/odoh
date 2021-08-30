@@ -89,7 +89,7 @@ Run container and register in traefik
       -l "traefik.http.routers.odohproxy.tls.options=mintls12@file" \
       -l "traefik.http.routers.odohproxy.tls.domains[0].main=odoh.marco.cx" \
       -l "traefik.http.routers.odohproxy.tls.domains[0].sans=odoh-relay.marco.cx" \
-      mschirrmeister/odoh-server-go:0.1.4-7986d2f
+      mschirrmeister/odoh-server-go:0.1.4-5a9bf1f
 
 ### Traefik
 
